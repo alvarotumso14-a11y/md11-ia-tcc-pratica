@@ -23,55 +23,55 @@ O objetivo não é decorar definições, e sim demonstrar que você entende os c
 O que é um "agent" (agente de IA)? Explique com suas próprias palavras e dê um exemplo de situação em que faz mais sentido usar um agente do que um chat comum.
 
 **Sua resposta:**
-
+Um agente de IA é um sistema que recebe um objetivo, analisa o que precisa ser feito e pode executar uma sequência de ações usando ferramentas, verificando os resultados ao longo do processo. Um chat comum normalmente responde à solicitação com texto, enquanto um agente pode, por exemplo, consultar arquivos, executar testes e corrigir um erro. No projeto GerenciadorDeTarefas, faria mais sentido usar um agente para investigar por que uma operação de tarefas falha, localizar o código relacionado, propor uma correção e rodar os testes. Para uma pergunta conceitual simples, um chat comum seria suficiente.
 
 ### Questão 2 — O que são guidelines?
 O que são "guidelines" (diretrizes) ao usar uma IA generativa? Qual é o papel delas na qualidade das respostas geradas pelo modelo?
 
 **Sua resposta:**
-
+Guidelines são instruções e critérios que orientam como a IA deve trabalhar e responder. Podem definir o contexto do projeto, o público, o estilo, as ferramentas permitidas, os limites e o formato esperado. Elas melhoram a relevância e a consistência das respostas e ajudam a evitar sugestões incompatíveis com o projeto. Não garantem que a resposta esteja correta: ainda é necessário revisar o resultado.
 
 ### Questão 4 — Escolha de modelo e nível de esforço
 Qual modelo de IA utilizar para cada tipo de tarefa? Dê um exemplo de tarefa simples e outra mais complexa, explicando como você escolheria o modelo em cada caso. O que é o "nível de esforço" (effort level) e quando faz sentido aumentá-lo ou diminuí-lo?
 
 **Sua resposta:**
-
+Eu escolheria o modelo considerando a dificuldade, o risco e o custo da tarefa. Para uma tarefa simples, como corrigir a ortografia de uma mensagem ou explicar uma função pequena, usaria um modelo rápido e econômico. Para uma tarefa complexa, como analisar a arquitetura do aplicativo, rastrear um erro que envolve várias classes ou propor uma alteração com impacto em diferentes partes do sistema, escolheria um modelo mais capaz e com bom desempenho em programação. O nível de esforço indica quanto raciocínio e recursos o modelo deve dedicar à resposta. Eu o aumentaria para problemas ambíguos, com várias etapas ou consequências importantes, e diminuiria para tarefas diretas e rotineiras, em que uma resposta rápida é suficiente.
 
 ### Questão 5 — Como estruturar um bom prompt
 Descreva os elementos que tornam um prompt mais eficaz (ex.: contexto, objetivo, formato esperado, exemplos, restrições).
 
 **Sua resposta:**
-
+Um bom prompt informa o contexto necessário, descreve claramente o objetivo e delimita o que deve ou não ser feito. Também pode indicar o formato da resposta, critérios de qualidade, exemplos do resultado desejado e restrições, como manter a linguagem usada no projeto ou não alterar arquivos fora do escopo. Por exemplo: "No GerenciadorDeTarefas, analise o método que marca uma tarefa como concluída; explique primeiro o comportamento atual, identifique possíveis erros e sugira uma alteração pequena. Não modifique outros métodos e apresente os testes que devo executar." Quanto mais específico e verificável for o pedido, menor a chance de receber uma resposta genérica ou fora do escopo.
 
 ### Questão 6 — Iteração de prompt
 O que significa "iterar" um prompt? Por que a primeira resposta de uma IA geralmente não é a versão final, e como você usaria a resposta recebida para melhorar o próximo prompt?
 
 **Sua resposta:**
-
+Iterar um prompt significa fazer novas solicitações com base no que aconteceu na tentativa anterior. A primeira resposta pode interpretar o pedido de outra forma, deixar de considerar algum detalhe ou propor algo amplo demais, porque a IA trabalha com as informações fornecidas e pode cometer erros. Eu compararia a resposta com o objetivo, apontaria o que faltou ou ficou incorreto e acrescentaria contexto ou critérios concretos no próximo prompt. Por exemplo, depois de uma sugestão de correção, eu poderia informar o erro observado e pedir uma solução menor que preserve o comportamento já existente.
 
 ### Questão 7 — Zero-shot vs. few-shot
 Qual é a diferença entre um prompt "zero-shot" e um prompt "few-shot"? Dê um exemplo de situação em que vale a pena incluir exemplos dentro do próprio prompt.
 
 **Sua resposta:**
-
+Em um prompt zero-shot, a IA recebe a tarefa sem exemplos de como deve produzir o resultado. Em um prompt few-shot, são fornecidos um ou mais exemplos de entrada e da saída esperada para orientar o padrão. Vale incluir exemplos quando o formato ou a classificação desejada é específico. Por exemplo, para pedir que a IA organize tarefas em categorias como "pendente", "em andamento" e "concluída", eu mostraria alguns títulos e suas categorias corretas. Assim, ela tem referências concretas para seguir, embora os exemplos não substituam a revisão do resultado.
 
 ### Questão 8 — Memória e contexto entre sessões
 O que significa uma IA "ter memória" entre sessões diferentes de conversa? Por que, em um projeto longo como o TCC, é importante decidir o que precisa ser "lembrado" e como fornecer esse contexto para a IA a cada nova conversa?
 
 **Sua resposta:**
-
+Ter memória entre sessões significa conseguir reutilizar informações de conversas anteriores, em vez de começar sempre sem contexto. Isso pode ocorrer por meio de recursos de memória da ferramenta ou de arquivos de orientação do projeto. Em um projeto longo, é importante registrar informações estáveis e úteis, como objetivo, tecnologias, convenções e restrições, para que as respostas continuem coerentes. Também é importante não guardar tudo: detalhes temporários ou dados sensíveis podem ser irrelevantes ou inadequados. Se a ferramenta não recuperar essas informações automaticamente, devo fornecer os arquivos ou um resumo atualizado no início da nova conversa.
 
 ### Questão 9 — Avaliar a resposta da IA
 Antes de aplicar a sugestão de uma IA no seu projeto, como você verifica se ela está correta? Descreva pelo menos 2 formas práticas de checar a confiabilidade de uma resposta gerada por IA.
 
 **Sua resposta:**
-
+Eu não aplicaria uma sugestão só porque ela parece convincente. Primeiro, compararia a resposta com a documentação oficial e com o código e os requisitos do projeto, verificando se as APIs, premissas e comportamentos citados realmente existem. Depois, executaria os testes relevantes e, se necessário, criaria um teste pequeno para reproduzir o caso. Também revisaria o diff para procurar efeitos colaterais e pediria uma segunda análise ou consultaria outra fonte quando o tema fosse importante. Essas verificações ajudam a encontrar erros, mas não eliminam a necessidade de julgamento humano.
 
 ### Questão 10 — Dividir tarefas complexas em etapas
 Por que, em tarefas mais complexas, pode ser melhor dividir o trabalho em um fluxo de etapas (ex.: primeiro classificar/organizar, depois processar, depois revisar) em vez de pedir tudo em um único prompt? Dê um exemplo aplicado a uma tarefa do seu TCC.
 
 **Sua resposta:**
-
+Dividir uma tarefa complexa em etapas torna o processo mais claro e fácil de conferir. Cada etapa tem um objetivo menor, e um erro pode ser encontrado antes de afetar as etapas seguintes. Também fica mais simples ajustar o trabalho sem pedir tudo novamente. No GerenciadorDeTarefas, se eu precisasse adicionar uma opção para filtrar tarefas concluídas, começaria identificando onde as tarefas são armazenadas e exibidas; depois definiria e implementaria o filtro; por fim, revisaria a alteração e testaria listas vazias, tarefas concluídas e tarefas pendentes. Assim, consigo validar cada parte e manter a mudança dentro do escopo.
 
 > **Questão 3** (como escrever um bom CLAUDE.md) e a **Questão 11** (prática, evidência de uso real da IA) são respondidas nos próprios arquivos `CLAUDE.md` e `EVIDENCIAS.md` — veja a parte prática abaixo.
 
